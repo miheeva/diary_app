@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,63 +37,59 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 200,
-        centerTitle: false,
-        title: RichText(
-            overflow: TextOverflow.visible,
-            text: TextSpan(
-              text: 'Ежедневник \nМелоди \nБитти',
-              style: TextStyle(
-                  overflow: TextOverflow.visible,
-                  height: 1.2,
-                  fontSize: 38,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.error),
-            )),
-        backgroundColor: Theme.of(context).colorScheme.background,
-        elevation: 0,
-      ),
-      body: Scaffold(
-          body: GridView.count(
-            scrollDirection:,
-            crossAxisCount: 2,
-            children: List.generate(12, (index) {
-              return Center(
-                child: Container(
-                  padding: const EdgeInsets.all(25),
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 5,
-                      blurRadius: 12,
-                      offset: const Offset(0, 6), // changes position of shadow
-                    )
-                  ],
-                ),
-                  child: Align(
-                    child: Text(
-                    'Январь',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500
-                    ),
-                    textAlign: TextAlign.center,
-                    
-                    ),
-                  )
-                ),);
-            }
-
-          )
-        
-      ))
-    );
+        appBar: AppBar(
+          toolbarHeight: 200,
+          centerTitle: false,
+          title: RichText(
+              overflow: TextOverflow.visible,
+              text: TextSpan(
+                text: 'Ежедневник \nМелоди \nБитти',
+                style: TextStyle(
+                    overflow: TextOverflow.visible,
+                    height: 1.2,
+                    fontSize: 38,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.error),
+              )),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          elevation: 0,
+        ),
+        body: Scaffold(
+            body: GridView.count(
+                crossAxisCount: 2,
+                children: List.generate(12, (index) {
+                  return Center(
+                    child: InkWell(
+                        onTap: () {
+                          print('qwe');
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.all(25),
+                            margin: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(25)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  spreadRadius: 5,
+                                  blurRadius: 12,
+                                  offset: const Offset(
+                                      0, 6), // changes position of shadow
+                                )
+                              ],
+                            ),
+                            child: const Align(
+                              child: Text(
+                                'Январь',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w500),
+                                textAlign: TextAlign.center,
+                              ),
+                            ))),
+                  );
+                }))));
   }
 }
 
