@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'const.dart';
 import 'notes_screen.dart';
 
-
 class MounthGrid extends StatelessWidget {
   const MounthGrid({super.key});
 
