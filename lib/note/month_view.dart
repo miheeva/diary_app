@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'const.dart';
+import 'notes_screen.dart';
 
 
 class MounthGrid extends StatelessWidget {
@@ -6,16 +8,17 @@ class MounthGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<int> text = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     return Scaffold(
         body: GridView.count(
             crossAxisCount: 2,
-            children: 
-            List.generate(12, (index) {
+            children: months.asMap().entries.map((entry) {
+              var mIndex = entry.key;
+              var month = entry.value;
               return Center(
                   child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/days');
+                        final args = NotesScreenArguments(mIndex);
+                        Navigator.pushNamed(context, '/days', arguments: args);
                       },
                       child: Container(
                           padding: const EdgeInsets.all(25),
@@ -34,13 +37,13 @@ class MounthGrid extends StatelessWidget {
                               )
                             ],
                           ),
-                          child: const Align(
-                              child: Text(
-                            'Январь',
-                            style: TextStyle(
+                          child: Align(
+                            child: Text(
+                            month,
+                            style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w500),
                             textAlign: TextAlign.center,
                           )))));
-            })));
+            }).toList()));
   }
 }

@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:diary_app/note/days_view.dart';
+import 'const.dart';
+
+class NotesScreenArguments {
+  final int month;
+
+  NotesScreenArguments(this.month);
+}
 
 class Notes extends StatelessWidget {
   const Notes({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final month = _getMonth(context);
+    final monthName = months[month];
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 200,
@@ -13,7 +22,7 @@ class Notes extends StatelessWidget {
           title: RichText(
               overflow: TextOverflow.visible,
               text: TextSpan(
-                text: 'Январь',
+                text: monthName,
                 style: TextStyle(
                     overflow: TextOverflow.visible,
                     height: 1.2,
@@ -25,6 +34,11 @@ class Notes extends StatelessWidget {
           elevation: 0,
         ),
         body: const Days());
+  }
+
+  int _getMonth(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as NotesScreenArguments;
+    return args.month;
   }
 }
 
