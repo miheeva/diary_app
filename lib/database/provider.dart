@@ -10,14 +10,14 @@ class DBProvider {
   DBProvider._();
   static final DBProvider db = DBProvider._();
 
-  late Database _database;
+  Database? _database = null;
 
   Future<Database> get database async {
     if (_database != null) {
-      return _database;
+      return _database!;
     }
     _database = await _init();
-    return _database;
+    return _database!;
 
   }
 
@@ -27,7 +27,7 @@ class DBProvider {
     String path = join(documentsDirectory.path, 'diary_app.db');
     return await openDatabase(path, version: 1, onCreate: (Database db, int version) async {
       var dbTables = DatabaseTables(db);
-      // await dbTables.deploy();
+      await dbTables.deploy();
       // await dbTables.deployFixtures();
     });
   }
